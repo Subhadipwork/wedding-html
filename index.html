@@ -1,0 +1,582 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="SAn1VigN39Qd1JzBZhauQDXs2ti1t2SezHQLB6zM">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>Merraige : Jay&Sarbani</title>
+    <meta name="title" content="Merraige : Jay&Sarbani">
+    <meta name="description" content="Dev-Azy">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Roboto:wght@100;300;400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://kadio.id/css/splide-core.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <link rel="canonical" href="https://kadio.id/demo/ocean-rose">
+    <style>
+        .image-1 {
+            background: url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774033_bg1.jpeg") center;
+            background-size: cover;
+        }
+
+        .image-2 {
+            background: url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774033_bg2.jpg") center;
+            background-size: cover;
+        }
+
+        .image-3 {
+            background: url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774033_bg3.jpg") center;
+            background-size: cover;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://kadio.id/css/template/kdo2.css?v=42">
+    <link rel="stylesheet" href="https://kadio.id/css/lightbox.min.css">
+  
+
+
+</head>
+
+<body>
+    <div class="modal" id="prokes_modal">
+        <div class="modal-content" style="max-width: 400px!important;">
+            <div class="top-border">
+                <img width="40px"
+                    src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/cdn/1642862592_Asset%201.png" />
+            </div>
+            <div class="bottom-border"></div>
+            <div class="bottom-sign">
+                <h3>-U & B-</h3>
+            </div>
+            <div class="body p-4" style="border-radius: 7px;overflow: hidden">
+                <div style="text-align: center;padding-top: 10px;">
+                    <h5>Health Protocol Information</h5>
+                    <p>This event will be implemented by applying health protocols.</p>
+                    <ul style="margin-top:20px;">
+                        <li>
+                            <div class="item">
+                                <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/cdn/1640741678_Prokes_1.png"
+                                    alt="">
+                                Wear a Mask
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/cdn/1640741765_Prokes_2.png"
+                                    alt="">
+                                Keep Distance
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item">
+                                <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/cdn/1640741790_Prokes_3.png"
+                                    alt="">
+                                Wash Hands
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="prokes-footer">
+                    <a href="javascript:void(0)" class="btn-outline-primary btn-ok-prokes"
+                        onclick="confirm_open_invitation()">I Understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="hide" id="play_button" data-status="play" onclick="play_pause(this)" href="javascript:void(0)">
+        <div id="audio_control" class="pause">
+        </div>
+    </a>
+    <!-- <input type="hidden" id="song_url"
+        value="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/songs/marry-your-daughter.mp3"> -->
+
+    <section id="index" class="index animate__animated animate__fadeIn animate__slower">
+        <div class="frame animate__animated animate__fadeIn animate__slow animate__delay-1s">
+            <div>
+                <div class="flower-top animate__animated animate__fadeIn animate__slow animate__delay-2s"><img
+                        src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/index-flower.png" alt=""
+                        width="100%"></div>
+                <div class="animate__animated animate__bounceInDown animate__slower">
+                    <h5 class="mb-3">You are invited to our wedding</h5>
+                    <h2 class="font-secondary mb-3">Jay & Sarbani</h2>
+                    <h4>Friday, July 04, 2025</h4>
+                    <div class="card mb-6">
+                        <div>
+                            <small class="d-block">Dear</small>
+                            <small class="d-block">Mr/Mrs/Brother/Sister</small>
+                            <h5 id="nama"></h5>
+                            <small>at Place</small>
+                        </div>
+                    </div>
+                    <a id="open_invitation" href="#cover">Open Invitation</a>
+                </div>
+                <div class="flower-bottom animate__animated animate__fadeIn animate__slow animate__delay-2s"><img
+                        src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/index-flower.png" alt=""
+                        width="100%"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container hide">
+        <div class="nav animate__animated animate__bounceInUp animate__slower animate__delay-2s">
+            <ul>
+                <li><a href="#bridegroom" class="bridegroomNavItem navItem active"><img
+                            src="https://kadio.id/images/icon/mobile/1.svg" alt=""></a></li>
+                <li><a href="#event" class="eventNavItem navItem"><img src="https://kadio.id/images/icon/mobile/2.svg"
+                            alt=""></a></li>
+                <li><a href="#story" class="storyNavItem navItem"><img src="https://kadio.id/images/icon/mobile/3.svg"
+                            alt=""></a></li>
+                <li><a href="#galery" class="galeryNavItem navItem"><img src="https://kadio.id/images/icon/mobile/4.svg"
+                            alt=""></a></li>
+                <li><a href="#rsvp" class="rsvpNavItem navItem"><img src="https://kadio.id/images/icon/mobile/5.svg"
+                            alt=""></a></li>
+            </ul>
+        </div>
+
+        <section class="cover" id="cover">
+            <div id="container"></div>
+            <div class="cover-background">
+                <div class="animated-image image-1"></div>
+                <div class="animated-image image-2"></div>
+                <div class="animated-image image-3"></div>
+            </div>
+            <div class="overlay"></div>
+            <div class="frame animate__animated animate__fadeIn animate__slow animate__delay-1s">
+                <div class="detail">
+                    <div class="flower-top animate__animated animate__fadeIn animate__slow animate__delay-1s"><img
+                            src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/index-flower.png"
+                            alt="" width="100%"></div>
+                    <h5 class="mb-3 animate__animated animate__flipInY animate__slower animate__delay-1s">We are getting
+                        married</h5>
+                    <h2 class="font-secondary mb-3 animate__animated animate__bounceInUp animate__slower">
+                        Jay & Sarbani</h2>
+                    <h4 class="animate__animated animate__bounceInUp animate__slower">
+                        Friday, July 04, 2025</h4>
+                    <p class="d-block animate__animated animate__bounceInUp animate__slower">- Save the Date -</p>
+                    <div class="count_down" data-countdown="2025-09-10 13:46:00">
+                        <div class="item animate__animated animate__bounceInUp animate__slower" data-days="00">00
+                            <span>Days</span>
+                        </div>
+                        <div class="item animate__animated animate__bounceInUp animate__slower" data-hours="00">00
+                            <span>Hours</span>
+                        </div>
+                        <div class="item animate__animated animate__bounceInUp animate__slower" data-minutes="00">00
+                            <span>Minutes</span>
+                        </div>
+                        <div class="item animate__animated animate__bounceInUp animate__slower" data-seconds="00">00
+                            <span>Seconds</span>
+                        </div>
+                    </div>
+                    <div class="flower-bottom animate__animated animate__fadeIn animate__slow animate__delay-1s"><img
+                            src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/index-flower.png"
+                            alt="" width="100%"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bridegroom" id="bridegroom">
+            <div class="content">
+                <h2 data-aos="fade-up" data-aos-duration="1500">The Couple</h2>
+                <p class="mt-4 mb-8" data-aos="fade-up" data-aos-duration="1000" style="white-space: pre-wrap;">
+                    "Two souls, one journey—united in love and happiness."
+                </p>
+                <div class="row bride-profile">
+                    <div class="left-flower"></div>
+                    <div class="right-flower"></div>
+                    <div class="col mb-6">
+                        <div class="image-bride" data-aos="fade-right" data-aos-duration="1000">
+                            <div class="bg-flower groom"></div>
+                            <img class="bride"
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/439/bride1649774583_groom.jpg"
+                                alt="Naresh Debnath">
+                            <div class="flower groom"></div>
+                        </div>
+                        <div data-aos="fade-up" data-aos-duration="1000">
+                            <h4 class="mb-2 mt-2">Jay</h4>
+                            <h5 class="mb-2">Jay Das</h5>
+                            <p class="mb-2">Son of</p>
+                            <p class="bold">Jayanta Das</p>
+                            <p class="bold line-height-1">&</p>
+                            <p class="bold mb-4">Suchitra Das</p>
+                            <p style="white-space: pre-wrap">Kolkata, India</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="image-bride" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="bg-flower bride"></div>
+                            <img class="bride"
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/439/bride1649774583_bride.jpg"
+                                alt="Sarbani Debnath">
+                            <div class="flower bride"></div>
+                        </div>
+                        <div data-aos="fade-up" data-aos-duration="1000">
+                            <h4 class="mb-2 mt-2">Sarbani</h4>
+                            <h5 class="mb-2">Sarbani Debnath</h5>
+                            <p class="mb-2">Daughter of</p>
+                            <p class="bold"></p>
+                            <p class="bold line-height-1">&</p>
+                            <p class="bold mb-4">Swampa Debnath</p>
+                            <p style="white-space: pre-wrap">Kolkata, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="event" id="event">
+            <div class="content">
+                <h2 class="mb-4" data-aos="fade-up" data-aos-duration="1500">Wedding Events</h2>
+                <div class="row justify-center mt-6 flex-wrap">
+        
+                    <!-- Aiburobhat (Pre-Wedding Feast) -->
+                    <div class="item mb-8">
+                        <div class="detail" data-aos="fade-up" data-aos-duration="1000">
+                            <h3 class="mb-2">Registry (Pre-Wedding Feast)</h3>
+                            <p>Friday, May 2, 2025</p>
+                            <p class="mb-2">12:00 PM - 3:00 PM IST</p>
+                            <p class="bold mb-2">Debnath Residence</p>
+                            <p>Nahata, Bongaon, West Bengal</p>
+                            <div class="d-flex align-center justify-center mt-3">
+                                <a target="_blank" href="https://maps.app.goo.gl/x3H82Mz1X92jF8Xq5" class="btn-open-map mr-2">
+                                    Open Map
+                                    <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/maps-white.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Biye (Wedding Ceremony) -->
+                    <div class="item mb-8">
+                        <div class="detail" data-aos="fade-up" data-aos-duration="1000">
+                            <h3 class="mb-2">Biye (Wedding Ceremony)</h3>
+                            <p>Friday, July 4, 2025</p>
+                            <p class="mb-2">6:00 PM - 9:00 PM IST</p>
+                            <p class="bold mb-2">Grand Banquet Hall</p>
+                            <p>Nahata, Bongaon, West Bengal</p>
+                            <div class="d-flex align-center justify-center mt-3">
+                                <a target="_blank" href="https://maps.app.goo.gl/PYk5vC3xH9J6G6z89" class="btn-open-map mr-2">
+                                    Open Map
+                                    <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/maps-white.png">
+                                </a>
+                                <a target="_blank" href="Live" class="btn-open-live">Live 
+                                    <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/live-white.png" alt="" width="24">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Bou Bhat (Reception) -->
+                    <div class="item mb-8">
+                        <div class="detail" data-aos="fade-up" data-aos-duration="1000">
+                            <h3 class="mb-2">Bou Bhat (Reception)</h3>
+                            <p>Sunday, July 6, 2025</p>
+                            <p class="mb-2">1:00 PM - 4:00 PM IST</p>
+                            <p class="bold mb-2">The Grand Ballroom</p>
+                            <p>Nahata, Bongaon, West Bengal</p>
+                            <div class="d-flex align-center justify-center mt-3">
+                                <a target="_blank" href="https://maps.app.goo.gl/N5v1Jh8K9Xq7G3Xh6" class="btn-open-map mr-2">
+                                    Open Map
+                                    <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/maps-white.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section>
+        
+        
+<section class="story" id="story">
+    <div class="content">
+        <h2 data-aos="fade-up" data-aos-duration="1500" class="mb-8">Our Love Story</h2>
+        <div class="list-stories-new">
+            <div class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <!-- First Meeting -->
+                        <li class="splide__slide">
+                            <div class="detail">
+                                <div class="h-100">
+                                    <div class="h-100 p-5">
+                                        <h5 class="mb-2">The First Spark</h5>
+                                        <p class="italic mb-2">School Days, 2016</p>
+                                        <p>We were old school friends, but something changed in 2016. A small spark, a first reaction, and everything started to feel different.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Getting Closer -->
+                        <li class="splide__slide">
+                            <div class="detail">
+                                <div class="h-100">
+                                    <div class="h-100 p-5">
+                                        <h5 class="mb-2">Growing Closer</h5>
+                                        <p class="italic mb-2">College Years, 2018</p>
+                                        <p>As we moved into college, our friendship grew deeper. We shared countless memories, endless conversations, and slowly realized our bond was something special.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Relationship Begins -->
+                        <li class="splide__slide">
+                            <div class="detail">
+                                <div class="h-100">
+                                    <div class="h-100 p-5">
+                                        <h5 class="mb-2">A New Beginning</h5>
+                                        <p class="italic mb-2">January, 2019</p>
+                                        <p>It was in early 2019 when we both knew—this was love. What started as a beautiful friendship turned into something even more meaningful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Engagement -->
+                        <li class="splide__slide">
+                            <div class="detail">
+                                <div class="h-100">
+                                    <div class="h-100 p-5">
+                                        <h5 class="mb-2">The Proposal</h5>
+                                        <p class="italic mb-2">March, 2023</p>
+                                        <p>After years of love and laughter, we took the next step. The proposal was simple yet magical, marking the beginning of our forever.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Wedding -->
+                        <li class="splide__slide">
+                            <div class="detail">
+                                <div class="h-100">
+                                    <div class="h-100 p-5">
+                                        <h5 class="mb-2">Happily Ever After</h5>
+                                        <p class="italic mb-2">July, 2025</p>
+                                        <p>And now, here we are—preparing to say "I do," surrounded by love, family, and friends. Our journey has just begun, and we can't wait to see where life takes us together.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <section class="galery" id="galery">
+            <div class="content">
+                <div class="top-left" data-aos="fade-up"></div>
+                <div class="top-right"></div>
+                <h2 data-aos="fade-up" data-aos-duration="1500">Photo Gallery</h2>
+                <div class="image-list mt-4">
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-1.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-1.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-2.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-2.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-3.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-3.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774238_g-4.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774238_g-4.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-5.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-5.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-6.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-6.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-7.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-7.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-8.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-8.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-9.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-9.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-10.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-10.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-11.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-11.jpg"
+                                alt=""></a>
+                    </div>
+                    <div class="image" data-aos="fade-up" data-aos-duration="1000">
+                        <a href="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-12.jpg"
+                            data-lightbox="roadtrip"><img
+                                src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774237_g-12.jpg"
+                                alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="rsvp" id="rsvp">
+            <div class="content">
+                <h2 class="text-center" data-aos="fade-up" data-aos-duration="1000">Blessings & Wishes</h2>
+                <div class="form_message mt-6" data-aos="fade-up" data-aos-duration="1500">
+                    <form id="form_message" action="">
+                        <input type="hidden" id="invitation_code" name="invitation_code" value="872g3flu">
+                        <input type="hidden" id="guest_id" name="guest_id" value="">
+                        <input type="hidden" value="439" name="order_detail_invitation_id">
+                        
+                        <label for="guest_name">Name:</label>
+                        <input id="guest_name" type="text" name="guest_name" value="">
+                        <p class="font-primary"></p>
+                        <br>
+                        
+                        <label for="message">Message for the Couple:</label>
+                        <textarea id="message" type="text" name="message" rows="3" class="mb-5"></textarea>
+                        
+                        <label for="presence">Will You Be Attending?</label>
+                        <div class="mt-1 d-flex align-center">
+                            <input type="radio" name="attendant" value="attend" id="hadir" checked>
+                            <label class="font-primary ml-2" for="hadir">Attending</label>
+                        </div>
+                        <div class="mt-2 d-flex align-center">
+                            <input type="radio" name="attendant" value="absent" id="absent">
+                            <label class="font-primary ml-2" for="absent">Not Attending</label>
+                        </div>
+                        <div class="mt-2 d-flex align-center">
+                            <input type="radio" name="attendant" value="maybe" id="maybe">
+                            <label class="font-primary ml-2" for="maybe">Maybe</label>
+                        </div>
+                        <br>
+                        
+                        <button type="button" id="btn_message" class="mb-4">
+                            Send <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/send-blue.png" alt="">
+                        </button>
+                        
+                        <br><br>
+        
+                        <p style="line-height: 25px;">Thank you for your blessings and warm wishes.</p>
+                        <p class="mb-4 mt-4">With love,</p>
+                        <b>
+                            <p>Ucok & Butet</p>
+                        </b>
+                    </form>
+                    
+                    <div class="flower">
+                        <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/rsvp-flower.png" alt="">
+                    </div>
+                </div>
+        
+                <!-- <div class="turut-mengundang" data-aos="fade-up" data-aos-duration="1500">
+                    <div class="flower"></div>
+                    <div class="title2">Inviting</div>
+        
+                    <div class="tume-title">Groom's Family</div>
+                    <ol class="nama-pengundang">
+                        <li>Mr. Ucok, S.H.</li>
+                        <li>Mr. Lorem, S.Th.</li>
+                        <li>Mrs. D. Liam Alexander</li>
+                    </ol>
+        
+                    <div class="tume-title">Bride's Family</div>
+                    <ol class="nama-pengundang">
+                        <li>Mrs. Sarah Anderson, S.E., M.Sc.</li>
+                        <li>Mr. Michael Collins, S.Psi., M.Psi.</li>
+                        <li>Mrs. Emily Johnson, S.Farm., M.Farm.</li>
+                    </ol>
+                </div>
+         -->
+                <div class="message_guest" data-aos="fade-up" data-aos-duration="1000">
+                    <p class="mb-4">Blessings & Wishes from Guests</p>
+                    <ul id="message_list" style="list-style: none;">
+                        <li>
+                            <span class="from">Elizabeth Bennet & Darcy</span>
+                            <span class="guest_message">Marriage is a new chapter in life, filled with happiness, togetherness, and all the beautiful things that come with it.</span>
+                        </li>
+                        <li>
+                            <span class="from">Edward & Bella</span>
+                            <span class="guest_message">Amazing!! Wishing you a wonderful journey in your new life together.</span>
+                        </li>
+                        <li>
+                            <span class="from">Cinta & Rangga</span>
+                            <span class="guest_message">Yay!! Congratulations, you’re finally getting married! 😆</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="footer">
+            <footer>
+                <p style="text-align: center;padding:10px;margin-bottom: 0;">Designed by : <a target="_blank"
+                        href=""><strong style="color: #543203;">Subhadip</strong></a></p>
+                <!-- <img class="logo" src="https://yogiazy.github.io/assets/img/favicon.png" alt="" width="100"> -->
+            </footer>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <script src="https://kadio.id/js/lightbox-plus-jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> -->
+
+    
+    <!-- <script src="https://kadio.id/js/common.js?v=42"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script> -->
+    <!-- <script src="https://kadio.id/js/falling-flower.js"></script> -->
+    <!-- <script src="https://kadio.id/js/splide.min.js"></script> -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
+    <script src="./lightbox.js"></script>
+    <script src="./moment.js"></script>
+    <script src="./count-down.js"></script>
+    <script src="./common.js"></script>
+    <script src="./gsap.js"></script>
+    <script src="./falling-flower.js"></script>
+    <script src="./splide.min.js"></script>
+    <script src="./alertify.min.js"></script>
+    <script src="./rsvp.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</body>
+
+</html>
