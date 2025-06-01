@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <!-- <link rel="stylesheet" href="./css/story-fix.css"> -->
-
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
     <style>
         .image-1 {
             background: url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774033_bg1.jpeg") center;
@@ -35,6 +36,51 @@
         .image-3 {
             background: url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/upload/invitation/1649774033_bg3.jpg") center;
             background-size: cover;
+        }
+
+        /* Map styles */
+        #mapbox-map {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-container {
+            position: relative;
+            padding: 20px;
+        }
+
+        .map-info {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            z-index: 2;
+        }
+
+        .map-info h4 {
+            margin: 0 0 5px 0;
+            color: #543203;
+        }
+
+        .map-info p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .map-info {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 15px;
+                max-width: 100%;
+            }
         }
     </style>
 
@@ -194,7 +240,9 @@
                     <div class="col mb-6">
                         <div class="image-bride" data-aos="fade-right" data-aos-duration="1000">
                             <div class="bg-flower groom"></div>
-                            <img class="bride" src="https://stgjywwxprtgogaazehv.supabase.co/storage/v1/object/sign/weddingimage/jay.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzdhOTIzZDkxLWIzMjYtNDlkYS1iNGIwLTIwZjlmNmJjY2UwMCJ9.eyJ1cmwiOiJ3ZWRkaW5naW1hZ2UvamF5LmpwZWciLCJpYXQiOjE3NDg3Njc5MDAsImV4cCI6MTc4MDMwMzkwMH0.bsvHm2vqhmySRkbIcr7D9OBYESWp81xRZScsWiHeJgQ" alt="Subhadip Das">
+                            <img class="bride"
+                                src="https://stgjywwxprtgogaazehv.supabase.co/storage/v1/object/sign/weddingimage/jay.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5XzdhOTIzZDkxLWIzMjYtNDlkYS1iNGIwLTIwZjlmNmJjY2UwMCJ9.eyJ1cmwiOiJ3ZWRkaW5naW1hZ2UvamF5LmpwZWciLCJpYXQiOjE3NDg3Njc5MDAsImV4cCI6MTc4MDMwMzkwMH0.bsvHm2vqhmySRkbIcr7D9OBYESWp81xRZScsWiHeJgQ"
+                                alt="Subhadip Das">
                             <div class="flower groom"></div>
                         </div>
                         <div data-aos="fade-up" data-aos-duration="1000">
@@ -300,7 +348,7 @@
         </section>
 
 
-     <section class="story" id="story">
+        <section class="story" id="story">
             <div class="content">
                 <h2 data-aos="fade-up" data-aos-duration="1500" class="mb-8">Our Love Story</h2>
                 <div class="list-stories-new">
@@ -314,12 +362,14 @@
                                             <div class="h-100 p-5">
                                                 <h5 class="mb-2">The First Spark</h5>
                                                 <p class="italic mb-2">School Days, 2016</p>
-                                                <p>We were old school friends, but something changed in 2016. A small spark, a first reaction, and everything started to feel different.</p>
+                                                <p>We were old school friends, but something changed in 2016. A small
+                                                    spark, a first reaction, and everything started to feel different.
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-    
+
                                 <!-- Getting Closer -->
                                 <li class="splide__slide">
                                     <div class="detail">
@@ -327,12 +377,14 @@
                                             <div class="h-100 p-5">
                                                 <h5 class="mb-2">Growing Closer</h5>
                                                 <p class="italic mb-2">College Years, 2018</p>
-                                                <p>As we moved into college, our friendship grew deeper. We shared countless memories, endless conversations, and slowly realized our bond was something special.</p>
+                                                <p>As we moved into college, our friendship grew deeper. We shared
+                                                    countless memories, endless conversations, and slowly realized our
+                                                    bond was something special.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-    
+
                                 <!-- Relationship Begins -->
                                 <li class="splide__slide">
                                     <div class="detail">
@@ -340,12 +392,14 @@
                                             <div class="h-100 p-5">
                                                 <h5 class="mb-2">A New Beginning</h5>
                                                 <p class="italic mb-2">January, 2019</p>
-                                                <p>It was in early 2019 when we both knew—this was love. What started as a beautiful friendship turned into something even more meaningful.</p>
+                                                <p>It was in early 2019 when we both knew—this was love. What started as
+                                                    a beautiful friendship turned into something even more meaningful.
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-    
+
                                 <!-- Engagement -->
                                 <li class="splide__slide">
                                     <div class="detail">
@@ -353,12 +407,13 @@
                                             <div class="h-100 p-5">
                                                 <h5 class="mb-2">The Proposal</h5>
                                                 <p class="italic mb-2">March, 2023</p>
-                                                <p>After years of love and laughter, we took the next step. The proposal was simple yet magical, marking the beginning of our forever.</p>
+                                                <p>After years of love and laughter, we took the next step. The proposal
+                                                    was simple yet magical, marking the beginning of our forever.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-    
+
                                 <!-- Wedding -->
                                 <li class="splide__slide">
                                     <div class="detail">
@@ -366,7 +421,9 @@
                                             <div class="h-100 p-5">
                                                 <h5 class="mb-2">Happily Ever After</h5>
                                                 <p class="italic mb-2">July, 2025</p>
-                                                <p>And now, here we are—preparing to say "I do," surrounded by love, family, and friends. Our journey has just begun, and we can't wait to see where life takes us together.</p>
+                                                <p>And now, here we are—preparing to say "I do," surrounded by love,
+                                                    family, and friends. Our journey has just begun, and we can't wait
+                                                    to see where life takes us together.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -401,9 +458,7 @@
 
             <!-- View more button -->
             <div class="view-more text-center mt-6" data-aos="fade-up" data-aos-duration="1000">
-                <a href="gallery.html" 
-                   class="btn-view-more" 
-                   style="display: inline-block; 
+                <a href="gallery.html" class="btn-view-more" style="display: inline-block; 
                           padding: 12px 30px;
                           background-color: #543203;
                           color: white;
@@ -421,6 +476,15 @@
 
         <!-- Add this style for the loading spinner -->
         <style>
+            .custom-marker {
+                background-image: url('images/wedding.png');
+                width: 50px;
+                height: 50px;
+                background-size: cover;
+                border-radius: 50%;
+                animation: pulse-glow 2s infinite ease-in-out;
+            }
+
             @keyframes spin {
                 0% {
                     transform: rotate(0deg);
@@ -513,78 +577,31 @@
                             <span class="guest_message">Marriage is a new chapter in life, filled with happiness,
                                 togetherness, and all the beautiful things that come with it.</span>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
         </section>
 
-        <style>
-            section.map {
-                background: url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/paper-1.png") no-repeat center, url("https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/kdo2/bg2.svg") center;
-                background-size: cover, 100px;
-                position: relative;
-            }
-
-            section.map .content {
-                margin: auto;
-                padding: 70px 0 50px 0;
-            }
-
-            section.map .content h2 {
-                font-family: "Dancing Script", cursive;
-                font-size: 3.5rem;
-                font-weight: 100;
-                text-align: center;
-            }
-
-            .map-container {
-                position: relative;
-                height: 450px;
-                overflow: hidden;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-        </style>
 
         <section class="map" id="map">
             <div class="content">
                 <h2 data-aos="fade-up" data-aos-duration="1500">Location</h2>
                 <div class="map-container mt-6" data-aos="fade-up" data-aos-duration="1000">
-                    <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY
-                    &q=Nahata,+Gopalnagar,+West+Bengal
-                    &zoom=15
-                    &maptype=satellite
-                    &center=22.89236678502568,88.81907331498270" allowfullscreen>
-                    </iframe>
+                    <div id="mapbox-map"></div>
+                    <div class="map-info">
+                        <h4>Soumodip Banquet Hall</h4>
+                        <p>Nahata, Gopalnagar, West Bengal</p>
+                        <a href="https://maps.app.goo.gl/dYLMU5T7vtFLeDfk9" target="_blank" class="btn-open-map mt-2"
+                            style="display: inline-block; margin-top: 10px;">
+                            Get Directions
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <script>
-            // Initialize and add the map
-            function initMap() {
-                // Location
-                const location = { lat: 22.89236678502568, lng: 88.81907331498270 };
 
-                // Create map
-                const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 15,
-                    center: location,
-                    mapTypeId: 'satellite',
-                    tilt: 45 // This gives the 3D effect
-                });
-
-                // Add marker
-                const marker = new google.maps.Marker({
-                    position: location,
-                    map: map,
-                    title: "Wedding Venue"
-                });
-            }
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-        </script>
 
 
 
@@ -592,11 +609,12 @@
             <footer>
                 <p style="text-align: center;padding:10px;margin-bottom: 0;">Designed by : <a target="_blank"
                         href=""><strong style="color: #543203;">Subhadip</strong></a></p>
-                <img class="logo" src="https://yogiazy.github.io/assets/img/favicon.png" alt="" width="100">
+                <!-- <img class="logo" src="https://yogiazy.github.io/assets/img/favicon.png" alt="" width="100"> -->
             </footer>
         </section>
     </div>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script> -->
 
     <script src="./lightbox.js"></script>
 
@@ -615,7 +633,7 @@
             'maxHeight': 600,
         });
 
-        
+
     </script>
 
 
@@ -631,11 +649,293 @@
     <script src="./js/calendar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWF4amF5NDIwIiwiYSI6ImNtNzFscmZicDAxMm4yanFvN2lrcG1pY3AifQ.hMfPbRB7A7s_cMcYcSiX8w';
 
+            const weddingLocation = [88.699529, 22.988069];
 
+            const map = new mapboxgl.Map({
+                container: 'mapbox-map',
+                style: 'mapbox://styles/mapbox/navigation-guidance-night-v4',
+                center: weddingLocation,
+                zoom: 15.5,
+                pitch: 60, // Tilt the map
+                bearing: -17.6, // Rotate slightly for 3D effect
+                antialias: true
+            });
 
+            map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    
+            const el = document.createElement('div');
+            el.className = 'custom-marker';
+          
+
+            new mapboxgl.Marker({ element: el, anchor: 'bottom' })
+                .setLngLat(weddingLocation)
+                .addTo(map);
+
+            new mapboxgl.Popup({
+                closeButton: false,
+                offset: 25
+            })
+                .setLngLat(weddingLocation)
+              .setHTML(`
+  <div style="width:220px">
+    <strong>Soumodip Banquet Hall</strong>
+    <div class="splide" style="margin-top:5px;" aria-label="Wedding Venue Photos">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide"><img src="https://via.placeholder.com/200x120?text=Hall+1" /></li>
+          <li class="splide__slide"><img src="https://via.placeholder.com/200x120?text=Hall+2" /></li>
+          <li class="splide__slide"><img src="https://via.placeholder.com/200x120?text=Decoration" /></li>
+        </ul>
+      </div>
+    </div>
+    <a href="https://your-rsvp-link.com" target="_blank" style="display:inline-block;margin-top:10px;padding:6px 12px;background:#e91e63;color:#fff;text-decoration:none;border-radius:6px;font-size:14px;">
+      💌 RSVP Now
+    </a>
+  </div>
+`)
+
+                .setMaxWidth('300px')
+                .setCloseOnClick(false)
+
+                .addTo(map);
+
+            map.flyTo({
+                center: weddingLocation,
+                zoom: 16,
+                speed: 0.8,
+                curve: 1.5,
+                pitch: 60,
+                bearing: -30
+            });
+
+const landmarks = [
+  {
+    coords: [88.7008, 22.9859],
+    title: 'Nearby Hotel',
+    desc: 'Stay before or after the wedding 🌃',
+    icon: 'https://cdn-icons-png.flaticon.com/512/854/854894.png'
+  },
+  {
+    coords: [88.6967, 22.9898],
+    title: 'Railway Station',
+    desc: '5 min walk from the venue 🚆',
+    icon: 'https://cdn-icons-png.flaticon.com/512/3448/3448662.png'
+  }
+];
+
+landmarks.forEach(loc => {
+  const el = document.createElement('div');
+  el.style.backgroundImage = `url('${loc.icon}')`;
+  el.style.width = '36px';
+  el.style.height = '36px';
+  el.style.backgroundSize = 'cover';
+  el.style.borderRadius = '50%';
+
+  new mapboxgl.Marker({ element: el })
+    .setLngLat(loc.coords)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(`
+      <strong>${loc.title}</strong><br/><small>${loc.desc}</small>
+    `))
+    .addTo(map);
+});
+
+            map.on('load', function () {
+                map.resize();
+
+                // Insert 3D buildings layer
+                const layers = map.getStyle().layers;
+                const labelLayerId = layers.find(
+                    layer => layer.type === 'symbol' && layer.layout['text-field']
+                )?.id;
+
+                map.addLayer({
+                    'id': '3d-buildings',
+                    'source': 'composite',
+                    'source-layer': 'building',
+                    'filter': ['==', 'extrude', 'true'],
+                    'type': 'fill-extrusion',
+                    'minzoom': 15,
+                    'paint': {
+                        'fill-extrusion-color': '#aaa',
+
+                        // Use the building height for 3D
+                        'fill-extrusion-height': ['get', 'height'],
+                        'fill-extrusion-base': ['get', 'min_height'],
+                        'fill-extrusion-opacity': 0.6
+                    }
+                }, labelLayerId);
+            });
+        }, 1000);
+    });
+</script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize the map with a slight delay to ensure container is ready
+            setTimeout(initializeMap, 1000);
+
+            function initializeMap() {
+                // Mapbox access token
+                mapboxgl.accessToken = 'pk.eyJ1IjoibWF4amF5NDIwIiwiYSI6ImNtNzFscmZicDAxMm4yanFvN2lrcG1pY3AifQ.hMfPbRB7A7s_cMcYcSiX8w';
+
+                // Wedding venue coordinates
+                const weddingLocation = [88.699529, 22.988069];
+
+                // Create the map with 3D view settings
+                const map = new mapboxgl.Map({
+                    container: 'mapbox-map',
+                    style: 'mapbox://styles/mapbox/navigation-guidance-night-v4',
+                    center: weddingLocation,
+                    zoom: 15.5,
+                    pitch: 60, // Tilts the map for 3D effect
+                    bearing: -17.6, // Slight rotation for better 3D perspective
+                    antialias: true // Smoother edges for 3D buildings
+                });
+
+                // Add navigation controls
+                map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+                // Add the main wedding venue marker
+                addWeddingVenueMarker(map, weddingLocation);
+
+                // Add nearby landmarks
+                addNearbyLandmarks(map);
+
+                // Animate to the venue with a flyTo effect
+                animateToVenue(map, weddingLocation);
+
+                // Setup 3D buildings and other map features when loaded
+                map.on('load', function () {
+                    map.resize();
+                    add3DBuildings(map);
+                });
+            }
+
+            function addWeddingVenueMarker(map, location) {
+                // Create custom marker element
+                const el = document.createElement('div');
+                el.className = 'custom-marker';
+
+                // Add the marker to the map
+                new mapboxgl.Marker({
+                    element: el,
+                    anchor: 'bottom'
+                })
+                    .setLngLat(location)
+                    .addTo(map);
+
+                // Add an informative popup for the venue
+                new mapboxgl.Popup({
+                    closeButton: false,
+                    offset: 25,
+                    maxWidth: '300px',
+                    closeOnClick: false
+                })
+                    .setLngLat(location)
+                    .setHTML(`
+            <div style="width:220px">
+                <strong>Soumodip Banquet Hall</strong>
+                <div class="splide" style="margin-top:5px;" aria-label="Wedding Venue Photos">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide"><img src="https://via.placeholder.com/200x120?text=Hall+1" /></li>
+                            <li class="splide__slide"><img src="https://via.placeholder.com/200x120?text=Hall+2" /></li>
+                            <li class="splide__slide"><img src="https://via.placeholder.com/200x120?text=Decoration" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `)
+                    .addTo(map);
+
+                setTimeout(() => {
+                    if (typeof Splide !== 'undefined') {
+                        new Splide('.splide').mount();
+                    }
+                }, 100);
+            }
+
+            function addNearbyLandmarks(map) {
+                
+                const landmarks = [
+                    {
+                        coords: [88.7032648, 22.9859433],
+                        title: 'Subhadip\'s Home',
+                        desc: 'Groom\'s residence 🏡',
+                        icon: 'https://cdn-icons-png.flaticon.com/512/619/619034.png' // Groom icon
+                    },
+                    {
+                        coords: [88.702960,22.988856], // You'll need to replace with Sarbani's actual coordinates
+                        title: 'Sarbani\'s Home',
+                        desc: 'Bride\'s residence 🏡',
+                        icon: 'https://cdn-icons-png.flaticon.com/512/599/599919.png' // Bride icon
+                    },
+                    {
+                        coords: [88.7825775,22.9609547],
+                        title: 'Chandpara Railway Station',
+                        desc: '13km Station  the venue 🚆',
+                        icon: 'https://cdn-icons-png.flaticon.com/512/3448/3448662.png'
+                    }
+                ];
+
+                // Add each landmark to the map
+                landmarks.forEach(loc => {
+                    const el = document.createElement('div');
+                    el.style.backgroundImage = `url('${loc.icon}')`;
+                    el.style.width = '36px';
+                    el.style.height = '36px';
+                    el.style.backgroundSize = 'cover';
+                    el.style.borderRadius = '50%';
+
+                    new mapboxgl.Marker({ element: el })
+                        .setLngLat(loc.coords)
+                        .setPopup(
+                            new mapboxgl.Popup({ offset: 25 })
+                                .setHTML(`<strong>${loc.title}</strong><br/><small>${loc.desc}</small>`)
+                        )
+                        .addTo(map);
+                });
+            }
+            function animateToVenue(map, location) {
+                map.flyTo({
+                    center: location,
+                    zoom: 16,
+                    speed: 0.8,
+                    curve: 1.5,
+                    pitch: 60,
+                    bearing: -30
+                });
+            }
+
+            function add3DBuildings(map) {
+                // Find the first symbol layer (usually contains labels)
+                const layers = map.getStyle().layers;
+                const labelLayerId = layers.find(
+                    layer => layer.type === 'symbol' && layer.layout['text-field']
+                )?.id;
+
+                // Add 3D building extrusions
+                map.addLayer({
+                    'id': '3d-buildings',
+                    'source': 'composite',
+                    'source-layer': 'building',
+                    'filter': ['==', 'extrude', 'true'],
+                    'type': 'fill-extrusion',
+                    'minzoom': 15,
+                    'paint': {
+                        'fill-extrusion-color': '#aaa',
+                        'fill-extrusion-height': ['get', 'height'],
+                        'fill-extrusion-base': ['get', 'min_height'],
+                        'fill-extrusion-opacity': 0.6
+                    }
+                }, labelLayerId); // Insert before labels so they appear on top
+            }
+        });
+    </script>
 
 </body>
 
