@@ -2804,3 +2804,36 @@ section.rsvp .message_guest #message_list::-webkit-scrollbar {
   font-family: "Dancing Script", cursive;
   text-transform: uppercase;
 }
+
+
+
+
+/* section.map .content h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.5rem;
+  font-weight: 100;
+  text-align: center;
+  color: #228bc8;
+} */
+
+section.map {
+  text-align: center;
+  position: relative;
+}
+
+section.map .content h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.5rem;
+  font-weight: 100;
+  text-align: center;
+}
+
+
+.heart-frame {
+  width: 200px;
+  height: 180px;
+  overflow: hidden;
+  clip-path: path("M100 180 C100 160 60 130 20 90 C-20 50 30 0 100 40 C170 0 220 50 180 90 C140 130 100 160 100 180Z");
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
