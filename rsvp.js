@@ -1,21 +1,9 @@
-// Import Firebase modules (assumes they are included in your project)
-// import firebase from 'firebase/app';
-// import 'firebase/database';
+// Supabase setup
+const SUPABASE_URL = 'https://stgjywwxprtgogaazehv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0Z2p5d3d4cHJ0Z29nYWF6ZWh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3NjY5NDcsImV4cCI6MjA2NDM0Mjk0N30.UALd45WQQ7cZdF9jLUBBWK_-IM0CknpKAiA359kdYHo';
 
-// Firebase configuration (replace with your actual credentials)
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_DOMAIN.firebaseapp.com",
-    databaseURL: "YOUR_DB_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_BUCKET",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+// Create Supabase client
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 function ambilNamaDariURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,43 +25,34 @@ lightbox.option({
     'wrapAround': true,
     'disableScrolling': true
 });
+
 document.addEventListener('DOMContentLoaded', function () {
-    var http = new XMLHttpRequest();
-    http.open("GET", "https://mycloud.devazy.iotflows.com/onload?reload=sukses", true);
-    http.send();
-    http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            // alert(this.responseText);
-            var data = JSON.parse(this.responseText);
-            var len = data.length;
-            for (var i = 0; i < len; i++) {
-                $("#message_list").prepend('<li>\n' +
-                    '                        <span class="from">' + data[i].nama + '</span>\n' +
-                    '                        <span class="guest_message">' + data[i].pesan + '</span>\n' +
-                    '                    </li>');
-            }
-        }
-    }
-    var splide = new Splide('.splide',
-        {
-            type: 'loop',
-            perPage: 3,
-            pagination: true,
-            arrows: true,
-            lazyLoad: 'nearby',
-            perMove: 1,
-            breakpoints: {
-                640: {
-                    perPage: 2,
-                },
-                480: {
-                    arrows: false,
-                    perPage: 1,
-                    focus: 'center',
-                }
-            }
-        });
-    splide.mount();
+   
+    loadMessages();
+    loadGalleryImages();
+    // var splide = new Splide('.splide',
+    //     {
+    //         type: 'loop',
+    //         perPage: 3,
+    //         pagination: true,
+    //         arrows: true,
+    //         lazyLoad: 'nearby',
+    //         perMove: 1,
+    //         breakpoints: {
+    //             640: {
+    //                 perPage: 2,
+    //             },
+    //             480: {
+    //                 arrows: false,
+    //                 perPage: 1,
+    //                 focus: 'center',
+    //             }
+    //         }
+    //     });
+    // splide.mount();
+    
+    // Load messages from Supabase when DOM is loaded
+    
 });
 
 $(document).ready(function () {
@@ -113,73 +92,66 @@ $(document).ready(function () {
             }
         });
 
-        // Save to Firebase
-        db.ref('messages').push({
-            name: guestName,
-            message: message,
-            attendance: attendance,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-        }).then(() => {
-            // Send email notification
-            $.ajax({
-                url: 'https://mycloud.devazy.iotflows.com/send-email',
-                method: 'POST',
-                data: {
-                    to: 'your@email.com',
-                    subject: 'New Wedding RSVP from ' + guestName,
-                    body: `
-                        Name: ${guestName}
-                        Message: ${message}
-                        Attendance: ${attendance}
-                    `
-                },
-                success: function() {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Thank You!',
-                        text: 'Your message has been sent successfully',
-                        showConfirmButton: true,
-                        confirmButtonText: 'OK',
-                        customClass: {
-                            confirmButton: 'btn btn-primary'
-                        }
-                    });
-
-                    // Update UI
-                    $("#message_list").prepend(`
-                        <li class="animate__animated animate__fadeIn">
-                            <span class="from">${guestName}</span>
-                            <span class="guest_message">${message}</span>
-                        </li>
-                    `);
-                    
-                    // Clear form
-                    $('#guest_name').val('');
-                    $('#message').val('');
-                    btn.html('Send');
-                },
-                error: function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong! Please try again.',
-                        customClass: {
-                            confirmButton: 'btn btn-danger'
-                        }
-                    });
-                    btn.html('Send');
-                    btn.removeAttr("disabled");
+        // Save to Supabase
+        supabaseClient
+            .from('messages')
+            .insert([
+                { 
+                    name: guestName, 
+                    message: message, 
+                    attendance: attendance,
+                    created_at: new Date().toISOString()
                 }
+            ])
+            .then(response => {
+                if (response.error) {
+                    throw response.error;
+                }
+                
+                // Success notification
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thank You!',
+                    text: 'Your message has been sent successfully',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
+                });
+
+                // Update UI with the new message
+                $("#message_list").prepend(`
+                    <li class="animate__animated animate__fadeIn">
+                        <span class="from">${guestName}</span>
+                        <span class="guest_message">${message}</span>
+                    </li>
+                `);
+                
+                // Clear form
+                $('#guest_name').val('');
+                $('#message').val('');
+                btn.html('Send <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/send-blue.png" alt="">');
+                btn.removeAttr("disabled");
+                
+                // Reload the latest messages from Supabase
+                loadMessages();
+            })
+            .catch(error => {
+                console.error('Error inserting message:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong! Please try again.',
+                    customClass: {
+                        confirmButton: 'btn btn-danger'
+                    }
+                });
+                btn.html('Send <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/send-blue.png" alt="">');
+                btn.removeAttr("disabled");
             });
-        });
-    });
-
-    // Remove any gift-related event listeners
-    // Delete this if it exists:
-    // $("#btn_send_gift").on("click", function() { ... });
-
-    loadMessages();
-});
+    }); // Added missing closing bracket for form submit handler
+}); // Document ready function close
 
 // Replace existing alert function with modern SweetAlert
 function alert(msg, type = 'info') {
@@ -201,19 +173,33 @@ function alert(msg, type = 'info') {
     });
 }
 
-// Add Firebase data listener
-function loadMessages() {
-    db.ref('messages')
-        .orderByChild('timestamp')
-        .limitToLast(50)
-        .on('value', (snapshot) => {
-            const messages = [];
-            snapshot.forEach((childSnapshot) => {
-                messages.unshift(childSnapshot.val());
-            });
+// Updated Supabase data fetching to limit to 10 messages
+async function loadMessages() {
+    try {
+        const { data, error } = await supabaseClient
+            .from('messages')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(10);
             
-            $("#message_list").empty();
-            messages.forEach(msg => {
+        if (error) throw error;
+            
+        $("#message_list").empty();
+        
+        console.log('Fetched messages:', data);
+        
+        // If no messages yet, add a default message
+        if (data.length === 0) {
+            $("#message_list").append(`
+                <li class="animate__animated animate__fadeIn">
+                    <span class="from">Elizabeth Bennet & Darcy</span>
+                    <span class="guest_message">Marriage is a new chapter in life, filled with happiness,
+                        togetherness, and all the beautiful things that come with it.</span>
+                </li>
+            `);
+        } else {
+            // Add the fetched messages with animation
+            data.forEach(msg => {
                 $("#message_list").append(`
                     <li class="animate__animated animate__fadeIn">
                         <span class="from">${msg.name}</span>
@@ -221,5 +207,63 @@ function loadMessages() {
                     </li>
                 `);
             });
+        }
+    } catch (error) {
+        console.error('Error loading messages:', error);
+        alert('Failed to load messages. Please refresh the page.', 'error');
+    }
+}
+
+// Add this function to fetch gallery images from Supabase
+async function loadGalleryImages() {
+  try {
+    // First get a list of files from the gallery directory in storage
+    const { data: files, error } = await supabaseClient
+      .storage
+       .from('weddingimage')
+        .list('gellery', {
+            limit: 12,
+            sortBy: { column: 'name', order: 'desc' }
         });
+    if (error) throw error;
+    
+    // console.log('Gallery images loaded:', files);
+    // Show loading indicator while fetching images
+
+    
+    if (files && files.length > 0) {
+      // Empty the current gallery
+      $(".image-list").empty();
+      
+      // Loop through the files and add them to the gallery
+      files.forEach(file => {
+        // Get a public URL for each image
+        const imageUrl = supabaseClient
+          .storage
+          .from('weddingimage')
+          .getPublicUrl(`gellery/${file.name}`).data.publicUrl;
+          
+        // Append the image to the gallery
+        $(".image-list").append(`
+          <div class="image" data-aos="fade-up" data-aos-duration="1000">
+            <a href="${imageUrl}" data-lightbox="roadtrip">
+              <img src="${imageUrl}" alt="Wedding Gallery Image">
+            </a>
+          </div>
+        `);
+      });
+    } else {
+      console.log('No gallery images found, using default images');
+    }
+  } catch (error) {
+    console.error('Error loading gallery images:', error);
+    
+    // If there's an error, keep default gallery images
+    $(".loading-gallery").hide();
+  } finally {
+    // Always hide the loading indicator when done
+    setTimeout(() => {
+      $(".loading-gallery").fadeOut();
+    }, 500);
+  }
 }
