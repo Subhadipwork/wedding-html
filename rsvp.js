@@ -27,32 +27,38 @@ lightbox.option({
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-   
+
     loadMessages();
     loadGalleryImages();
-    // var splide = new Splide('.splide',
-    //     {
-    //         type: 'loop',
-    //         perPage: 3,
-    //         pagination: true,
-    //         arrows: true,
-    //         lazyLoad: 'nearby',
-    //         perMove: 1,
-    //         breakpoints: {
-    //             640: {
-    //                 perPage: 2,
-    //             },
-    //             480: {
-    //                 arrows: false,
-    //                 perPage: 1,
-    //                 focus: 'center',
-    //             }
-    //         }
-    //     });
-    // splide.mount();
-    
+    var splide = new Splide('.splide', {
+        type: 'loop',
+        perPage: 3,
+        pagination: true,
+        arrows: true,
+        lazyLoad: 'nearby',
+        perMove: 1,
+        autoplay: true,    // enable auto scrolling
+        interval: 2000,    // time in ms between slide moves (3 seconds)
+        pauseOnHover: true,  // pause on hover
+        pauseOnFocus: true,  // pause on focus (accessibility)
+        resetProgress: false, // do not reset progress bar on slide change
+        breakpoints: {
+            640: {
+                perPage: 2,
+            },
+            480: {
+                arrows: false,
+                perPage: 1,
+                focus: 'center',
+            }
+        }
+    });
+
+    splide.mount();
+
+
     // Load messages from Supabase when DOM is loaded
-    
+
 });
 
 $(document).ready(function () {
@@ -96,9 +102,9 @@ $(document).ready(function () {
         supabaseClient
             .from('messages')
             .insert([
-                { 
-                    name: guestName, 
-                    message: message, 
+                {
+                    name: guestName,
+                    message: message,
                     attendance: attendance,
                     created_at: new Date().toISOString()
                 }
@@ -107,7 +113,7 @@ $(document).ready(function () {
                 if (response.error) {
                     throw response.error;
                 }
-                
+
                 // Success notification
                 Swal.fire({
                     icon: 'success',
@@ -127,13 +133,13 @@ $(document).ready(function () {
                         <span class="guest_message">${message}</span>
                     </li>
                 `);
-                
+
                 // Clear form
                 $('#guest_name').val('');
                 $('#message').val('');
                 btn.html('Send <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.kadio.id/images/icon/send-blue.png" alt="">');
                 btn.removeAttr("disabled");
-                
+
                 // Reload the latest messages from Supabase
                 loadMessages();
             })
@@ -181,13 +187,13 @@ async function loadMessages() {
             .select('*')
             .order('created_at', { ascending: false })
             .limit(10);
-            
+
         if (error) throw error;
-            
+
         $("#message_list").empty();
-        
+
         console.log('Fetched messages:', data);
-        
+
         // If no messages yet, add a default message
         if (data.length === 0) {
             $("#message_list").append(`
@@ -216,54 +222,54 @@ async function loadMessages() {
 
 // Add this function to fetch gallery images from Supabase
 async function loadGalleryImages() {
-  try {
-    // First get a list of files from the gallery directory in storage
-    const { data: files, error } = await supabaseClient
-      .storage
-       .from('weddingimage')
-        .list('gellery', {
-            limit: 12,
-            sortBy: { column: 'name', order: 'desc' }
-        });
-    if (error) throw error;
-    
-    // console.log('Gallery images loaded:', files);
-    // Show loading indicator while fetching images
+    try {
+        // First get a list of files from the gallery directory in storage
+        const { data: files, error } = await supabaseClient
+            .storage
+            .from('weddingimage')
+            .list('gellery', {
+                limit: 12,
+                sortBy: { column: 'name', order: 'desc' }
+            });
+        if (error) throw error;
 
-    
-    if (files && files.length > 0) {
-      // Empty the current gallery
-      $(".image-list").empty();
-      
-      // Loop through the files and add them to the gallery
-      files.forEach(file => {
-        // Get a public URL for each image
-        const imageUrl = supabaseClient
-          .storage
-          .from('weddingimage')
-          .getPublicUrl(`gellery/${file.name}`).data.publicUrl;
-          
-        // Append the image to the gallery
-        $(".image-list").append(`
+        // console.log('Gallery images loaded:', files);
+        // Show loading indicator while fetching images
+
+
+        if (files && files.length > 0) {
+            // Empty the current gallery
+            $(".image-list").empty();
+
+            // Loop through the files and add them to the gallery
+            files.forEach(file => {
+                // Get a public URL for each image
+                const imageUrl = supabaseClient
+                    .storage
+                    .from('weddingimage')
+                    .getPublicUrl(`gellery/${file.name}`).data.publicUrl;
+
+                // Append the image to the gallery
+                $(".image-list").append(`
           <div class="image" data-aos="fade-up" data-aos-duration="1000">
             <a href="${imageUrl}" data-lightbox="roadtrip">
               <img src="${imageUrl}" alt="Wedding Gallery Image">
             </a>
           </div>
         `);
-      });
-    } else {
-      console.log('No gallery images found, using default images');
+            });
+        } else {
+            console.log('No gallery images found, using default images');
+        }
+    } catch (error) {
+        console.error('Error loading gallery images:', error);
+
+        // If there's an error, keep default gallery images
+        $(".loading-gallery").hide();
+    } finally {
+        // Always hide the loading indicator when done
+        setTimeout(() => {
+            $(".loading-gallery").fadeOut();
+        }, 500);
     }
-  } catch (error) {
-    console.error('Error loading gallery images:', error);
-    
-    // If there's an error, keep default gallery images
-    $(".loading-gallery").hide();
-  } finally {
-    // Always hide the loading indicator when done
-    setTimeout(() => {
-      $(".loading-gallery").fadeOut();
-    }, 500);
-  }
 }
