@@ -2829,6 +2829,8 @@ section.map .content h2 {
 }
 
 
+
+
 .heart-frame {
   width: 200px;
   height: 180px;
@@ -2837,3 +2839,81 @@ section.map .content h2 {
   background: #fff;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
+  .heart-link {
+      display: inline-block;
+      animation: blink 1s infinite;
+      border-radius: 50%;
+      text-decoration: none;
+      position: relative;
+  }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+      }
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      margin: 40px;
+      position: relative;
+      background: red;
+      transform: rotate(-45deg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: beat 0.7s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .heart-text {
+      position: absolute;
+      transform: rotate(45deg);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      width: 100%;
+      text-align: center;
+      margin-top: -5px;
+      margin-left: 5px;
+      letter-spacing: 0.5px;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 100px;
+      height: 90px;
+      position: absolute;
+      background: red;
+      border-radius: 50%;
+      z-index: -1;
+    }
+   
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1) rotate(-45deg);
+      }
+      50% {
+        transform: scale(1.1) rotate(-45deg);
+      }
+    }
