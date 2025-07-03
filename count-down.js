@@ -30,7 +30,6 @@ $(document).ready(function () {
                         <div class="countdown-complete banner">
                             <h3>🎉 It's Our Wedding Day! 🎉</h3>
                             <p>Thank you for being a part of our celebration.</p>
-                            <a href="https://www.google.com" class="btn-gallery">View Photos</a>
                         </div>
                     `);
                 });
@@ -56,7 +55,7 @@ $(document).ready(function () {
     });
 
     // Initialize Fireworks.js
-    function startFireworks() {
+ function startFireworks() {
     const container = document.getElementById('fireworks-container');
 
     if (!container || !window.Fireworks) {
@@ -64,36 +63,36 @@ $(document).ready(function () {
         return;
     }
 
+    // Manually preload sound files
+    const soundFiles = [
+        './sounds/explosion0.mp3',
+        './sounds/explosion1.mp3',
+        './sounds/explosion2.mp3',
+    ];
+
+    const sounds = soundFiles.map(src => {
+        const audio = new Audio(src);
+        audio.volume = 0.8; // set initial volume
+        return audio;
+    });
+
     const fireworks = new window.Fireworks.default(container, {
         hue: { min: 0, max: 360 },
-        delay: { min: 10, max: 30 }, // faster fire
+        delay: { min: 10, max: 30 },
         speed: 3.5,
         acceleration: 1.05,
         friction: 0.97,
-        gravity: 1.7, // more curve
-        particles: 150, // more particles
-        trace: 5,       // longer trail
-        explosion: 7,   // bigger explosion size
+        gravity: 1.7,
+        particles: 150,
+        trace: 5,
+        explosion: 7,
         autoresize: true,
         brightness: { min: 70, max: 90 },
         decay: { min: 0.015, max: 0.03 },
-        sound: {
-            enable: true,
-            files: [
-                './sounds/explosion0.mp3',
-                './sounds/explosion1.mp3',
-                './sounds/explosion2.mp3',
-            ],
-            volume: { min: 2, max: 4 },
-            // Add sound effects for fireworks
-            onStart: function () {
-                // Play random firework sound
-                const sound = sounds[Math.floor(Math.random() * sounds.length)];
-                sound.currentTime = 0; // Reset to start
-                sound.play().catch(err => console.error('Sound play error:', err));
-            }
 
-        },
+        // Disable built-in sound
+        sound: { enable: false },
+
         boundaries: {
             top: 0,
             bottom: container.clientHeight,
@@ -102,13 +101,21 @@ $(document).ready(function () {
         }
     });
 
+    // Start fireworks and play random sound every 700ms
     fireworks.start();
 
-    // Stop after 10 seconds
+    const soundInterval = setInterval(() => {
+        const sound = sounds[Math.floor(Math.random() * sounds.length)];
+        sound.currentTime = 0;
+        sound.play().catch(err => console.warn('🔇 Sound playback blocked:', err));
+    }, 700); // Adjust as needed for realism
+
     setTimeout(() => {
         fireworks.stop();
-    }, 10000);
-    }
+        clearInterval(soundInterval);
+    }, 10000); // 10s
+}
+
 
 
 });
